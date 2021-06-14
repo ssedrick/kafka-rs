@@ -1,5 +1,6 @@
 mod client;
 mod errors;
+pub mod producer;
 mod serde;
 
 #[cfg(test)]

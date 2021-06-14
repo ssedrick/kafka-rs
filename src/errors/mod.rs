@@ -1,4 +1,4 @@
-enum KafkaError {
+pub(crate) enum KafkaError {
     UnknownServerError,
     OffsetOutOfRange,
     // Fill in more

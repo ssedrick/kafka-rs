@@ -1,10 +1,17 @@
-use serde::Deserialize;
-
 struct ResponseHeader {
     correlation_id: i32,
 }
 
-struct ResponseMessage<T: Deserialize> {
+pub(crate) struct ResponseMessage {
     header: ResponseHeader,
-    body: T,
+    body: [u8; 1024],
+}
+
+impl ResponseMessage {
+    pub fn new(correlation_id: i32) -> Self {
+        Self {
+            header: ResponseHeader { correlation_id },
+            body: [0; 1024],
+        }
+    }
 }

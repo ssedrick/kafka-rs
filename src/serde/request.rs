@@ -1,15 +1,14 @@
+use crate::serde::ApiKey;
 use serde::Serialize;
 
-pub(crate) struct RequestHeader {
+pub(crate) struct RequestHeader<'a> {
     api_key: ApiKey,
     api_version: i16,
     correlation_id: i32,
-    client_id: Option<&str>,
+    client_id: Option<&'a str>,
 }
 
-enum Request<T: Serialize> {}
-
-pub(crate) struct RequestMessage<T: Serialize> {
-    header: RequestHeader,
-    body: Request<T>,
+pub(crate) struct RequestMessage<'a, T: Serialize> {
+    header: RequestHeader<'a>,
+    body: T,
 }
